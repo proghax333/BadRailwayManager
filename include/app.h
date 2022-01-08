@@ -201,14 +201,17 @@ CALLBACK int displayBookedTickets(int index, void *node, void *data)
         .compare = TrainCompareId};
 
     Train *train = (Train *)listFind(context->trains, &condition);
+    int difference = ticket->total - ticket->paid;
 
     printf("  %d. %s %s\n"
            "    Quantity: %d\n"
            "    Paid: %d\n"
+           "    Remaining: %d\n"
            "    Total: %d\n",
            index + 1, train->code, train->name,
            ticket->quantity,
            ticket->paid,
+           difference,
            ticket->total);
   }
 
