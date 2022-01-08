@@ -106,19 +106,21 @@ User *loginActivity(AppContext *context)
 
     if (currentUser)
     {
-      printf("Logged in successfully!\n"
-             "Press any key to continue...");
-      getString(choice, 0);
+      printf("Logged in successfully!\n");
+      waitForKey();
 
       context->currentUser = currentUser;
-
       return currentUser;
     }
     else
     {
-      printf("Could not log in. Try again!\n"
-             "Press any key to continue...");
+      printf("Could not log in. Would you like to try again?(y/n): ");
       getString(choice, 0);
+
+      if (!equalsIgnoreCase(choice, "y"))
+      {
+        return NULL;
+      }
     }
   }
 
@@ -175,7 +177,7 @@ ReturnCode bookTicket(AppContext *context)
     }
     else
     {
-      printf("Invalid code entered! Do you want to try again?: ");
+      printf("Invalid code entered! Would you like to try again?(y/n): ");
       char choice[16];
       getString(choice, 0);
 
@@ -303,7 +305,7 @@ ReturnCode cancelTicket(AppContext *context)
     }
     else
     {
-      printf("Invalid input entered. Would you like to try again?: ");
+      printf("Invalid input entered. Would you like to try again?(y/n): ");
       getString(choice, 0);
 
       if (!equalsIgnoreCase(choice, "y"))
@@ -408,7 +410,7 @@ ReturnCode pay(AppContext *context)
     }
     else
     {
-      printf("Invalid input entered. Would you like to try again?: ");
+      printf("Invalid input entered. Would you like to try again?(y/n): ");
       getString(choice, 0);
 
       if (!equalsIgnoreCase(choice, "y"))
@@ -516,11 +518,11 @@ ReturnCode mainScreen(AppContext *context)
 
 ReturnCode authScreen(AppContext *context)
 {
-  clearScreen();
   int choice;
 
   while (true)
   {
+    clearScreen();
     printf(
         "[ MENU ]\n"
         "1. Create an account\n"
