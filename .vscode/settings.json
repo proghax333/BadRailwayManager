@@ -1,0 +1,16 @@
+{
+  "files.associations": {
+    "array": "cpp",
+    "functional": "cpp",
+    "istream": "cpp",
+    "ostream": "cpp",
+    "tuple": "cpp",
+    "type_traits": "cpp",
+    "utility": "cpp",
+    "string": "cpp",
+    "string_view": "cpp",
+    "optional": "cpp",
+    "system_error": "cpp",
+    "app.h": "c"
+  }
+}

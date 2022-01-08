@@ -1,0 +1,300 @@
+*----  Algorithm for login  ----*
+1. Ask user to enter phone number
+  printf("Enter phone number: ")
+  readline(phone_number)
+
+2. Ask user to enter the password
+  printf("Enter password: ")
+  readline(password)
+
+3. Find account with these credentials
+  found = findUser(accounts, phone_number, password)
+
+4. If found Then
+  return true
+
+5. Else
+  printf("Invalid credentials")
+  
+6. Ask user if they want to try again
+  choice = readchar()
+
+7. If choice = 'y'
+  go to step 1
+
+8. END
+
+
+
+*----  Algorithm for user registration  ----*
+1. Ask user to enter name, age, email, phone
+  readline(name)
+  readline(age)
+  readline(email)
+  readline(phone)
+
+2. Ask user to enter password and confirm password
+  readline(password)
+  readline(confirm_password)
+
+3. If password = confirm_password Then
+  User newUser = { name, age, email, phone, password }
+  listInsert(users, newUser)
+
+  printf("Registration successful!")
+
+4. Else
+  printf("Confirm password do not match. Do you want to retry?")
+  choice = getchar()
+
+5. If choice = 'y' Then
+  go to step 2
+
+6. Else
+  printf("Could not complete registration")
+  
+7. END
+
+
+
+*----  Algorithm for menu  ----*
+1. Set choice = 0
+  choice = 0
+
+2. Display menu
+  printf(
+    "1. Book a ticket\n"
+    "2. List booked tickets\n"
+    "3. Cancel a ticket\n"
+    "4. Pay\n"
+    "5. Display details\n"
+    "6. Exit\n"
+  )
+
+3. Ask user to enter the choice
+  choice = getint()
+
+4. If choice = 1 Then
+  bookTicket()
+
+5. Else If choice = 2 Then
+  listBookedTickets()
+
+6. Else if choice = 3 Then
+  cancelBooking()
+
+7. Else if choice = 4 Then
+  pay()
+
+8. Else if choice = 5 Then
+  displayDetails()
+
+9. Else if choice = 6 Then
+  printf("Closing the application...\n")
+  Go to step 11.
+
+10. Else
+  printf("Invalid choice entered!\n")
+
+11. Show the menu again
+  Go to step 2
+
+12 END
+
+
+
+*----  Algorithm for booking a ticket  ----*
+1. Display list of available trains
+
+2. Ask user to select a train
+  trainCode = getline()
+
+3. Check if the entered code is valid
+  train = findTrain(trains, trainCode)
+
+4. If train = NULL
+  printf("Invalid train code. Would you like to try again?")
+
+  choice = getchar()
+  If choice = 'y' Then
+    go to step 2.
+  
+  Else
+    printf("Ticket booking stopped.")
+
+5. Else
+  booking = {
+    .userId = user.id,
+    .trainId = train.id
+  }
+  listInsert(bookings, booking)
+
+6. END
+
+
+
+*----  Algorithm for listing booked tickets  ----*
+1. ticket = bookings->head
+
+2. If ticket != NULL Then
+  If ticket.userId = user.id Then
+    train = findTrain(ticket.trainId)
+    printf("Booking ID: %dTrain name: %s\n", ticket.id, train.name)
+    
+    ticket = ticket->next
+    go to step 2
+
+3. END
+
+
+
+*----  Algorithm for ticket cancellation  ----*
+1. Display list of all tickets to the user
+  listIterate(tickets, ticketDisplay, condition)
+
+2. Ask user to select the ticket they want to cancel
+  ticketId = getint()
+
+3. Remove ticket from the list of tickets
+  listRemove(tickets, ticketId)
+
+4. END
+
+
+
+*----  Algorithm for ticket price payment  ----*
+1. Display all the pending ticket payments
+  listIterate(tickets, ticketDisplay, condition)
+
+2. Display ask user which ticket do they want to pay for.
+  ticketId = getint()
+
+3. Add payment to the ticket
+  ticket = listFind(tickets, ticketId)
+  ticket.payment += payment
+
+4. Ask user if they want to pay other pending ticket fees
+  choice = getchar()
+
+  If choice = 'y' Then
+    go to step 1.
+  
+5. END
+
+
+
+*----  Algorithm for display details  ----*
+1. Get the user details
+  details = listFind(users, user.id)
+
+2. Display user details
+  printf(
+    "Name: %s\n"
+    "Age: %d\n"
+    "Email: %s\n"
+    "Phone: %s\n",
+    details.name, details.age,
+    details.email, details.phone
+  )
+
+3. END
+
+
+
+*----  Algorithm for list insert  ----*
+1. Set head = list->head
+
+2. Create node
+  node = (Node*) calloc(1, sizeof(Node))
+  node->value = value
+  node->next = NULL
+
+3. If head = NULL Then
+  head = node
+
+4. Else
+  p = head
+  while(p->next != NULL)
+    p = p->next
+
+5. Attach the new note at the end of the linked list
+  p->next = node
+
+6. END
+
+
+
+*----  Algorithm for list remove  ----*
+1. Set head = list->head
+
+2. If head = NULL
+  return
+
+3. If head->value = value
+  p = head->next
+  free(head)
+  list->head = p
+
+  return
+
+4. Find the element in the list and remove it
+  while (p->next != NULL) {
+    if(p->next->value = value) {
+      t = p->next->next
+      free(p->next)
+      p->next = t;
+
+      return
+    }
+
+    p = p->next;
+  }
+
+5. END
+
+
+
+*----  Algorithm for list find  ----*
+1. Set head = list->head
+
+2. If head = NULL
+  return NULL
+
+3. Set p = head
+
+4. Iterate through the list and check if the condition is matched for some element
+  while(p != NULL) {
+    if(condition(p)) {
+      return p;
+    }
+    p = p->next;
+  }
+
+5. END
+
+
+
+*----  Algorithm for list iterate  ----*
+1. Set head = list->head
+
+2. If head = NULL
+  return
+
+3. Set p = head
+
+4. Iterate through the list and check for condition matches if the condition is supplied
+  if(!condition) {
+    while(p != NULL) {
+      callback(list, p);
+      p = p->next;
+    }
+  } else {
+    while(p != NULL) {
+      if(condition(p)) {
+        callback(list, p);
+      }
+      p = p->next;
+    }
+  }
+
+5. END
