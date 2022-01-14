@@ -49,7 +49,7 @@ bool createAccountActivity(AppContext *context)
     }
     else
     {
-      printf("Passwords do not match! Do you want to retry?");
+      printf("Passwords do not match! Do you want to retry?: ");
 
       char choice[16];
       getString(choice, 0);
