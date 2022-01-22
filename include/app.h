@@ -129,8 +129,7 @@ User *loginActivity(AppContext *context)
 
 CALLBACK int displayAvailableTrains(int index, void *node, void *data)
 {
-  TrainNode *trainNode = (TrainNode *)node;
-  Train *train = &trainNode->data;
+  Train *train = TrainGetData(node);
 
   printf("  %d. %s | Code: %s\n", index + 1, train->name, train->code);
   return 0;
@@ -194,7 +193,7 @@ ReturnCode bookTicket(AppContext *context)
 CALLBACK int displayBookedTickets(int index, void *node, void *data)
 {
   AppContext *context = (AppContext *)data;
-  Ticket *ticket = &((TicketNode *)node)->data;
+  Ticket *ticket = TicketGetData(node);
 
   if (ticket->userId == context->currentUser->id)
   {
@@ -242,7 +241,7 @@ typedef struct
 CALLBACK int indexBasedTicketFinder(int index, void *node, void *data)
 {
   TicketIndex *idx = (TicketIndex *)data;
-  Ticket *ticket = &((TicketNode *)node)->data;
+  Ticket *ticket = TicketGetData(node);
 
   if (ticket->userId == idx->context->currentUser->id)
   {
@@ -442,6 +441,7 @@ ReturnCode displayUserDetails(AppContext *context)
 
   return SUCCESS;
 }
+
 ReturnCode logout(AppContext *context)
 {
   context->currentUser = NULL;
