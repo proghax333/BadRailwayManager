@@ -93,6 +93,14 @@
                                                                       \
       break;                                                          \
     }                                                                 \
+    case UPDATE:                                                      \
+    {                                                                 \
+      break;                                                          \
+    }                                                                 \
+    case DELETE:                                                      \
+    {                                                                 \
+      break;                                                          \
+    }                                                                 \
     }                                                                 \
     return NULL;                                                      \
   }                                                                   \

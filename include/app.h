@@ -514,6 +514,8 @@ ReturnCode mainScreen(AppContext *context)
     printf("Invalid option chosen!\n");
   }
   }
+
+  return 0;
 }
 
 ReturnCode authScreen(AppContext *context)

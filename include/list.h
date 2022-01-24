@@ -202,4 +202,6 @@ bool listFree(List *list)
   listFreeHelper(list->context, list->head);
   freeContext(list->context);
   free(list);
+
+  return true;
 }
