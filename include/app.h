@@ -104,7 +104,7 @@ User *loginActivity(AppContext *context)
 
     currentUser = (User *)listFind(users, &condition);
 
-    if (currentUser)
+    if (currentUser && equals(currentUser->password, user.password))
     {
       printf("Logged in successfully!\n");
       waitForKey();
