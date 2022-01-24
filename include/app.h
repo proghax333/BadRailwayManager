@@ -127,7 +127,7 @@ User *loginActivity(AppContext *context)
   return NULL;
 }
 
-CALLBACK int displayAvailableTrains(int index, void *node, void *data)
+CALLBACK int displayAvailableTrains(int index, int *shared, void *node, void *data)
 {
   Train *train = TrainGetData(node);
 
@@ -190,13 +190,15 @@ ReturnCode bookTicket(AppContext *context)
   return SUCCESS;
 }
 
-CALLBACK int displayBookedTickets(int index, void *node, void *data)
+CALLBACK int displayBookedTickets(int index, int *shared, void *node, void *data)
 {
   AppContext *context = (AppContext *)data;
   Ticket *ticket = TicketGetData(node);
 
   if (ticket->userId == context->currentUser->id)
   {
+    ++*shared;
+
     TrainCondition condition = {
         .data = {.id = ticket->trainId},
         .compare = TrainCompareId};
@@ -209,7 +211,7 @@ CALLBACK int displayBookedTickets(int index, void *node, void *data)
            "    Paid: %d\n"
            "    Remaining: %d\n"
            "    Total: %d\n",
-           index + 1, train->code, train->name,
+           *shared, train->code, train->name,
            ticket->quantity,
            ticket->paid,
            difference,
@@ -222,6 +224,8 @@ CALLBACK int displayBookedTickets(int index, void *node, void *data)
 ReturnCode listBookedTickets(AppContext *context)
 {
   clearScreen();
+  int count = 0;
+
 
   printf("[ BOOKED TICKETS ]\n\n");
   listIterate(context->tickets, displayBookedTickets, context);
@@ -238,7 +242,7 @@ typedef struct
   Ticket *ticket;
 } TicketIndex;
 
-CALLBACK int indexBasedTicketFinder(int index, void *node, void *data)
+CALLBACK int indexBasedTicketFinder(int index, int *shared, void *node, void *data)
 {
   TicketIndex *idx = (TicketIndex *)data;
   Ticket *ticket = TicketGetData(node);

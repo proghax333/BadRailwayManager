@@ -12,7 +12,7 @@ typedef void *(*CreatorFunction)(void *value);
 typedef void *(*GetterFunction)(void *node);
 typedef bool (*SetterFunction)(void *node, void *newValueNode);
 typedef bool (*CompareFunction)(void *a, void *b);
-typedef int (*IteratorCallbackFunction)(int index, void *node, void *data);
+typedef int (*IteratorCallbackFunction)(int index, int *shared, void *node, void *data);
 
 typedef void *(*EventListener)(EventType type, void *container, void *arg);
 typedef bool (*ConditionFunction)(void *condition, void *iter);

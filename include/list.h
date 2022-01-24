@@ -171,10 +171,11 @@ void listIterate(List *list, IteratorCallbackFunction callback, void *data)
   Context *context = list->context;
   void *iter = list->head;
   int index = 0;
+  int shared = 0;
 
   while (iter != NULL)
   {
-    int result = callback(index, iter, data);
+    int result = callback(index, &shared, iter, data);
     if (result == EXIT)
     {
       break;
