@@ -1,50 +1,50 @@
 # Slide 1
-
-Project name - Railway Ticket Management System
-Team information:
-Guided by:
-Prof. Swati Khidse
-
-# Slide 1
-
-Table of contents
+  Project name - Railway Ticket Management System
+  Team information:
+  Guided by:
+    Prof. Swati Khidse
 
 # Slide 1
-
-Problem/Idea
-Railway Ticket Management system is a
-
-Features-
-Find Train
-Ticket booking, cancellation, payment.
+  Table of contents
 
 # Slide 1
+  Problem/Idea
+  Railway Ticket Management system is a
 
-Demo
-Screencast Video
+  Features-
+    Find Train
+    Ticket booking, cancellation, payment.
+
+# Slide 1
+  Demo
+    Screencast Video
 
 # Slide 3
-
-Program code
-Login, Register, Main Menu 1. Book a ticket 2. List booked tickets 3. Cancel a ticket 4. Pay 5. Display details
+  Program code
+    Login, Register, Main Menu
+      1. Book a ticket
+      2. List booked tickets
+      3. Cancel a ticket
+      4. Pay
+      5. Display details
 
 # Slide 2
+  Problems faced, techniques used.
 
-Problems faced, techniques used.
-
-1. Duplication
-2. Separation of concerns: Event handling
-
-# Slide 1
-
-Conclusion
+  1) Duplication
+  2) Separation of concerns: Event handling
 
 # Slide 1
-
-References/Links
-Project link-
-https://github.com/proghax333/BadRailwayManager
+  Conclusion
 
 # Slide 1
+  References/Links
+  Project link-
+    https://github.com/proghax333/BadRailwayManager
 
-Thank you!
+# Slide 1
+  Thank you!
+
+
+
+
